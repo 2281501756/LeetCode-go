@@ -6,9 +6,8 @@ import (
 	"os"
 )
 
-var n float64
-
 func main() {
+	var n float64
 	read := bufio.NewReader(os.Stdin)
 	fmt.Fscan(read, &n)
 	l, r := -100.0, 100.0

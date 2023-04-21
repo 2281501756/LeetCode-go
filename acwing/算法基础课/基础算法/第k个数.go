@@ -6,21 +6,23 @@ import (
 	"os"
 )
 
-var n, k int
-var nums []int
+var k int
 
 func main() {
+
+	var n int
+	var nums []int
 	read := bufio.NewReader(os.Stdin)
 	fmt.Fscanf(read, "%d %d", &n, &k)
 	nums = make([]int, n)
 	for i := 0; i < n; i++ {
 		fmt.Fscan(read, &nums[i])
 	}
-	quick_sort(nums, 0, n-1)
+	quick_sort1(nums, 0, n-1)
 	fmt.Printf("%d", nums[k-1])
 }
 
-func quick_sort(nums []int, l, r int) {
+func quick_sort1(nums []int, l, r int) {
 	if l >= r {
 		return
 	}

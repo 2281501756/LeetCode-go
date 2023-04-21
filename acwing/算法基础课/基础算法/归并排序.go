@@ -6,10 +6,9 @@ import (
 	"os"
 )
 
-var n int
-var nums []int
-
 func main() {
+	var n int
+	var nums []int
 	read := bufio.NewReader(os.Stdin)
 	fmt.Fscan(read, &n)
 	nums = make([]int, n)
