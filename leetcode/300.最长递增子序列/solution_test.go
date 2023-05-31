@@ -5,7 +5,6 @@ import (
 )
 
 func TestLongestIncreasingSubsequence(t *testing.T) {
-	println(lengthOfLIS([]int{10, 9, 2, 5, 3, 4}))
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
@@ -18,14 +17,14 @@ func lengthOfLIS(nums []int) int {
 		} else {
 			l, r := 0, len(dp)-1
 			for l < r {
-				mid := (l + r) / 2
+				mid := (l + r) >> 1
 				if dp[mid] < nums[i] {
 					l = mid + 1
 				} else {
 					r = mid
 				}
 			}
-			dp[l] = nums[i]
+			dp[r] = nums[i]
 		}
 	}
 	return len(dp)
