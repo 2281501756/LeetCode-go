@@ -43,6 +43,7 @@ func closeStrings(word1 string, word2 string) bool {
 			return false
 		}
 	}
+
 	return true
 }
 
