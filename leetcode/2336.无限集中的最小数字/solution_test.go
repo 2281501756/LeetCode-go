@@ -1,7 +1,7 @@
 package leetcode
 
 import (
-	"sort"
+	"github.com/emirpasic/gods/maps/treemap"
 	"testing"
 )
 
@@ -11,49 +11,25 @@ func TestSmallestNumberInInfiniteSet(t *testing.T) {
 
 // leetcode submit region begin(Prohibit modification and deletion)
 type SmallestInfiniteSet struct {
-	increaseId int
-	arr        []int
+	m *treemap.Map
 }
 
 func Constructor() SmallestInfiniteSet {
-	return SmallestInfiniteSet{
-		increaseId: 1,
-		arr:        []int{},
+	s := SmallestInfiniteSet{m: treemap.NewWithIntComparator()}
+	for i := 1; i <= 1000; i++ {
+		s.m.Put(i, nil)
 	}
+	return s
 }
 
 func (this *SmallestInfiniteSet) PopSmallest() int {
-	if len(this.arr) == 0 {
-		this.increaseId++
-		return this.increaseId - 1
-	} else {
-		res := this.arr[0]
-		this.arr = this.arr[1:]
-		return res
-	}
+	res, _ := this.m.Min()
+	this.m.Remove(res.(int))
+	return res.(int)
 }
 
 func (this *SmallestInfiniteSet) AddBack(num int) {
-	if num >= this.increaseId {
-		return
-	}
-	this.arr = append(this.arr, num)
-	unique_sort(this.arr)
-}
-
-func unique_sort(slice []int) []int {
-	res := make([]int, 0)
-	m := make(map[int]bool, len(slice))
-	for _, e := range slice {
-		if m[e] == false {
-			m[e] = true
-			res = append(res, e)
-		}
-	}
-	sort.Slice(res, func(i, j int) bool {
-		return res[i] < res[j]
-	})
-	return res
+	this.m.Put(num, nil)
 }
 
 /**
